@@ -503,6 +503,7 @@ class MessagePage(webapp2.RequestHandler):
                  ' client ' + client_id)
     wss_url, wss_post_url = get_wss_parameters(self.request)
     url = wss_post_url + '/' + room_id + '/' + client_id
+    urlfetch.set_default_fetch_deadline(30)
     result = urlfetch.fetch(url=url,
                             payload=message,
                             method=urlfetch.POST)
